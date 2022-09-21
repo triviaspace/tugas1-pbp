@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1 style="text-align: center;" >Tugas 3 - PBP</h1>
+
+  <h4>Name: </h5>
+  <p>{{name}}</p>
+
+  <h4>Student ID: </h5>
+  <p>{{id}}</p>
+
+  <table style="text-align: center;">
+    <tr>
+      <th>Watched?</th>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>Review</th>
+
+    </tr>
+    {% comment %} Add the data below this line {% endcomment %}
+    {% for item in list_watchlist %}
+    <tr>
+      <td style="text-align: center;">
+        {% if item.watched %}
+        <input type="checkbox" disabled checked />
+        {% else %}
+        <input type="checkbox" disabled/>
+      {% endif %}
+      </td>
+      <td>{{item.title}}</td>
+      <td>{{item.rating}}</td>
+      <td>{{item.release_date}}</td>
+      <td>{{item.review}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+ {% endblock content %}
