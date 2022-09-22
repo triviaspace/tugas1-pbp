@@ -27,3 +27,16 @@ Dalam membangun suatu platform, pasti dibutuhkan transaksi data, antara data mil
 6. Menambahkan method untuk menampilkan data dengan format HTML, XML, dan JSON pada file `views.py`.
 7. Melakukan migrasi data dengan perintah `python manage.py makemigrations` dan `python manage.py migrate`. 
 8. Melakukan *load initial data* dengan `python manage.py loaddata initial_mywatchlist_data.json`.
+
+
+## PostMan URL
+HTML 
+<img width="1680" alt="Screen Shot 2022-09-22 at 11 05 45" src="https://user-images.githubusercontent.com/96807409/191656556-f68f2ce0-ab81-474d-9976-38480b2751fe.png">
+
+JSON
+<img width="1680" alt="Screen Shot 2022-09-22 at 11 04 25" src="https://user-images.githubusercontent.com/96807409/191656583-ae7cdf48-cf32-4722-b868-4713dfaf70c7.png">
+
+XML
+<img width="1678" alt="Screen Shot 2022-09-22 at 11 04 50" src="https://user-images.githubusercontent.com/96807409/191656625-37849e8c-bf33-4b77-9d17-ae52466bbb5e.png">
+
+
