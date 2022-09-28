@@ -10,5 +10,9 @@ setiap ada *request* yang masuk. Jika *request* yang masuk tidak berisi token, m
 Form tidak akan dapat berjalan dengan baik apabila tidak ada `(% csrf_token %}` karena akan terjadi *Invalid or missing CSRF token*.
 
 ## Apakah Elemen `<form>` Dapat Dibuat Secara Manual Tanpa Generator?
-Elemen `<form>` biasanya dapat dibuat menggunakan generator seperti `{{ form.as_table }}`.
+Elemen `<form>` dapat dibuat menggunakan generator seperti `{{ form.as_table }}`. Namun, kita juga dapat membuatnya secara manual pada html
+dengan `<form>` dan menyertakan `<input type="submit">` untuk melakukan *submit form*. Untuk dapat mengisi input, kita juga dapat menambahkan
+elemen `<input>`. </br>
+Kita dapat menggunakan cara lain, yaitu dengan menampilkan setiap parameter form menjadi suatu elemen.
 
+##Alur Data 
