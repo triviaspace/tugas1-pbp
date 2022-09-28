@@ -2,35 +2,37 @@
 
 {% block content %}
 <h5>Nama: </h5>
-<b>{{user}}</b>
+<p>{{nama}}</p>
+
+<h1>To Do List:</h1>
+
+<button><a href="{% url 'todolist:create-task' %}">Create Task</a></button><br/><br/>
 
 <table>
     <tr>
-    <th>Tanggal</th>
-    <th>Judul</th>
-    <th>Deskripsi</th>
-    <th>Status</th>
-    <th>Ubah Status</th>
+        <th>Task</th>
+        <th>User</th>
+        <th>Tanggal</th>
+        <th>Deskripsi</th>
+        <th>Selesai</th>
     </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for task in data_tasks %}
+    
+    {% for task in data %}
         <tr>
-            <th>{{task.date}}</th>
             <th>{{task.title}}</th>
+            <th>{{task.user}}</th>
+            <th>{{task.date}}</th>
             <th>{{task.description}}</th>
-            {% if task.is_finished %}
-                <th style="color: green;">Selesai</th>
-            {% else %}
-                <th style="color: red;">Belum Selesai</th>
-            {% endif %}
-            <td>
-                <button><a href="{% url 'todolist:update_task' task.id %}">Ubah</a></button>
-                <button><a href="{% url 'todolist:delete_task' task.id %}">Hapus</a></button>
-            </td>
+            <th>{{task.is_finished}}</th>
+            <th><button><a href="{% url 'todolist:task-selesai' pk=task.id %}">Selesai</a></button></th>
+            <th><button><a href="{% url 'todolist:undo-task' pk=task.id %}">Belum Selesai</a></button></th>
+            <th><button><a href="{% url 'todolist:hapus-task' pk=task.id %}">Hapus</a></button></th>
         </tr>
     {% endfor %}
 </table>
-<button><a href="{% url 'todolist:add_task' %}">Tambah Task</a></button>
-<br>
-<button><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
-{% endblock content %} 
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+
+{% endblock content %}
