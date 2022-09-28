@@ -15,12 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from todolist.views import register 
+from todolist.views import login_user
+from todolist.views import logout_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('example_app.urls')),
     path('katalog/', include('katalog.urls')),
-    path('mywatchlist/', include('mywatchlist.urls'))
+    path('mywatchlist/', include('mywatchlist.urls')),
+    path('todolist/', include('todolist.urls')),
+    path('register/', register, name='register'),
+    path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout'),
 ]
 
 # TODO: Implement Routings Here

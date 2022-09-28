@@ -5,7 +5,7 @@ from mywatchlist.views import show_xml #sesuaikan dengan nama fungsi yang dibuat
 from mywatchlist.views import show_json #sesuaikan dengan nama fungsi yang dibuat
 
 # TODO: Implement Routings Here
-app_name = 'my watchlist'
+app_name = 'mywatchlist'
 
 urlpatterns = [
     path('bonus/', show_bonus, name='show_bonus'),
