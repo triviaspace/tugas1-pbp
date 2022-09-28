@@ -1,19 +1,19 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+
 import datetime
 from django.http import HttpResponse, HttpResponseRedirect, response
 from django.urls import reverse
-from todolist.forms import TaskForm
 
+from todolist.forms import TaskForm
 from todolist.models import Task
 
 # Create your views here.
-@login_required(login_url='/todolist/login/')
+
 def register(request):
     form = UserCreationForm()
 
@@ -34,7 +34,9 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('todolist:show_todolist')
+            response = HttpResponseRedirect(reverse("todolist:show_todolist"))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
@@ -42,9 +44,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    response = HttpResponseRedirect(reverse('todolist:login'))
-    response.delete_cookie('last_login')
-    return response
+    return redirect('todolist:login')
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
