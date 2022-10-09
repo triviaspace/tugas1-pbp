@@ -1,4 +1,4 @@
-# Tugas 2
+# Tugas 3
 Pada tugas ini, kita mengimplementasikan *Data Delivery* pada django.
 Berikut link aplikasi website, [HerokuApp Pages](https://tugas2-pbp-safa.herokuapp.com/).
 
