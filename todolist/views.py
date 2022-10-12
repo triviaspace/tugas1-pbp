@@ -6,8 +6,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 
 import datetime
-from django.http import HttpResponse, HttpResponseRedirect, response
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
 from django.urls import reverse
+
+from django.core import serializers
 
 from todolist.forms import TaskForm
 from todolist.models import Task
@@ -61,6 +63,34 @@ def show_todolist(request):
         return redirect('todolist:login')
 
 @login_required(login_url='/todolist/login/')
+def todolist_ajax(request):
+    user = request.user
+    data = Task.objects.filter(user=user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_todolist_ajax(request):
+    user = request.user
+    context = {
+        'nama': user.username,
+        'last_login': request.COOKIES['last_login'],
+    }
+    return render(request, "todolist_ajax.html", context)
+
+def add_task_ajax(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        addedTask = Task.objects.create(
+            title = title,
+            description = description,
+        )
+        addedTask.save()
+        return render(request, 'create_post.html')   
+
+
+
+@login_required(login_url='/todolist/login/')
 def create_task(request):
     if request.method == 'POST':
         form = TaskForm(request.POST)
@@ -70,7 +100,7 @@ def create_task(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse("todolist:show_todolist"))
+            return HttpResponseRedirect(reverse("todolist:show_todolist_ajax"))
 
     else:
         form = TaskForm()
