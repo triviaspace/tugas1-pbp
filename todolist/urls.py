@@ -13,4 +13,7 @@ urlpatterns = [
     path('selesai/<int:pk>', task_selesai, name='task-selesai'),
     path('undo/<int:pk>', undo_task, name='undo-task'),
     path('hapus/<int:pk>', hapus_task, name='hapus-task'),
+    path('json/', todolist_ajax, name='todolist_ajax'),
+    path('show/json/', show_todolist_ajax, name='show_todolist_ajax'),
+
 ]
