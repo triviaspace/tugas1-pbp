@@ -78,15 +78,21 @@ def show_todolist_ajax(request):
 
 def add_task_ajax(request):
     if request.method == 'POST':
+        tasks = Task.objects.all()
         title = request.POST.get('title')
         description = request.POST.get('description')
 
         addedTask = Task.objects.create(
             title = title,
             description = description,
+            date=datetime.datetime.now(),
+            user=request.user,
         )
+
         addedTask.save()
-        return render(request, 'create_post.html')   
+        return HttpResponse("")
+    
+    return render(request, 'todolist_ajax.html', {'todolist':tasks})   
 
 
 
