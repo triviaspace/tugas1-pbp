@@ -52,16 +52,22 @@
     e.preventDefault();
     $.ajax({
       type:"POST",
-      url:"{% url 'todolist:show_todolist_ajax' %}",
+      url:"{% url 'todolist:add_task_ajax' %}",
       data:{
         title:$("#title-task").val(),
         description:$("#description-task").val(), 
         csrfmiddlewaretoken:'{{ csrf_token }}',
+        action: 'post',
       },
       dataType: 'json',
     });
+    setInterval('refreshPage()', 1000);
     createTableAjax();
   });
+
+  function refreshPage() { 
+        location.reload(); 
+    }
 
 </script>
 {% endblock meta %}
