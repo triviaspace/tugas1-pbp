@@ -95,7 +95,6 @@ def add_task_ajax(request):
     return render(request, 'todolist_ajax.html', {'todolist':tasks})   
 
 
-
 @login_required(login_url='/todolist/login/')
 def create_task(request):
     if request.method == 'POST':
@@ -106,12 +105,30 @@ def create_task(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse("todolist:show_todolist_ajax"))
+            return HttpResponseRedirect(reverse("todolist:show_todolist")) 
+            #ganti  show_todolist_ajax saat demo ajax
 
     else:
         form = TaskForm()
 
         return render(request, 'create-task.html', {'form':form})
+
+# @login_required(login_url='/todolist/login/')
+# def add_task(request):
+#     if request.method == 'POST':
+#         form = TaskForm(request.POST)
+
+#         form.instance.user = request.user
+#         form.instance.date = datetime.datetime.now()
+
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect(reverse("todolist:show_todolist"))
+
+#     else:
+#         form = TaskForm()
+
+#         return render(request, 'create-task.html', {'form':form})
 
 @login_required(login_url='/todolist/login/')
 def task_selesai(request, pk):
@@ -131,6 +148,7 @@ def undo_task(request, pk):
 def hapus_task(request, pk):
     Task.objects.filter(id=pk).first().delete()
     return HttpResponseRedirect(reverse("todolist:show_todolist"))
+    
 
 
 
