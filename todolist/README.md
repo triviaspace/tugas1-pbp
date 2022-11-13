@@ -64,6 +64,6 @@ Terdapat beberapa cara implementasi CSS berdasarkan selector-nya, yaitu :
 - Untuk Class, bisa menggunakan nama class dan menyertakan . di awalannya, seperti .contohClass{}.
 
 ## Proses Implementasi Web Design
-Dengan melakukan penambahan style CSS secara inline dan eksternal CSS. </br>
+Dengan melakukan penambahan style CSS secara inline dan eksternal CSS.
 Lalu, setiap task baru, membuat penambahan card di laman html yang dapat mengimplementasi belum selesai/selesai dan fitur hapus. 
 Pada implementasi card, saya menggunakan bantuan template dari bootstrap.
